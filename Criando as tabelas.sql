@@ -13,7 +13,7 @@ use ecommerce;
 
 
 create table Cliente(
-	IdCliente int auto_increment primary key,
+    IdCliente int auto_increment primary key,
     Fnome varchar(10) not null,
     Mnome char(1) ,
     Lnome varchar(10) not null,
@@ -28,7 +28,7 @@ create table Cliente(
 -- CRIANDO TABELA DE PAGAMENTO --
 
 create table Pagamento(
-	IdPagamento int auto_increment,
+    IdPagamento int auto_increment,
     IdCliente int,
     TipoPagamento enum('Cartao', 'Boleto', 'Pix', 'Pagamento nao realizado') default ('Pagamento nao realizado'),
     constraint primary key (IdPagamento, IdCliente),
@@ -38,7 +38,7 @@ create table Pagamento(
 -- CRIANDO A TABELA PEDIDOS --
 
 create table Pedidos(
-	IdPedido int auto_increment primary key,
+    IdPedido int auto_increment primary key,
     IdCliente int,
     Descricao varchar(250),
     StatusPedido enum('Pedido realizado', 'Em andamento', 'Saiu para entrega', 'Finalizado', 'Esperando pagamento') default ('Esperando pagamento'),
@@ -54,7 +54,7 @@ create table Pedidos(
 -- CRIANDO TABELA DE ENTREGA --
 
 create table Entrega(
-	IdEntrega int auto_increment,
+    IdEntrega int auto_increment,
     IdCliente int,
     IdPedido int,
     Estatus enum('Saiu para entrega', 'Entrega realizada', 'Preparando pedido') default ('Preparando pedido'),
@@ -68,7 +68,7 @@ create table Entrega(
 -- CRIANDO TABELA DE PRODUTO --
 
 create table Produto(
-	IdProduto int auto_increment primary key,
+    IdProduto int auto_increment primary key,
     Categoria enum('Eletrônicos', 'Eletrodomésticos', 'Moveis', 'Alimentos', 'Utensilios'),
     ClassificacaoCrianca boolean,
     PNome varchar(30) not null,
@@ -79,7 +79,7 @@ create table Produto(
 -- CRIANDO TABELA DE ESTOQUE --
 
 create table Estoque(
-	IdEstoque int auto_increment primary key,
+    IdEstoque int auto_increment primary key,
     Elocal varchar(250) not null,
     Ecategoria enum('Eletrônicos', 'Eletrodomésticos', 'Moveis', 'Alimentos', 'Utensilios') not null,
     Quantidade int not null
@@ -88,7 +88,7 @@ create table Estoque(
 -- CRIANDO TABELA DE FORNECEDOR --
 
 create table Fornecedor(
-	IdFornecedor int auto_increment primary key,
+    IdFornecedor int auto_increment primary key,
     Flocal varchar(250) not null,
     CNPJ char(14) not null unique,
     RazaoSocial varchar(20) not null,
@@ -100,7 +100,7 @@ create table Fornecedor(
 -- CRIANDO TABELA DE VENDEDOR --
 
 create table Vendedor(
-	IdVendedor int auto_increment primary key,
+    IdVendedor int auto_increment primary key,
     Vlocal varchar(250) not null,
     CNPJ char(14) not null unique,
     RazaoSocial varchar(40) not null,
@@ -114,7 +114,7 @@ create table Vendedor(
 -- CRIANDO TABELA DA RELAÇÃO PRODUTO/VENDEDOR -- 
 
 create table Relacao_Prod_Vend(
-	IdRelacaoVend int auto_increment,
+    IdRelacaoVend int auto_increment,
     IdProduto int,
     IdVendedor int,
     constraint primary key(IdRelacaoVend, IdProduto, IdVendedor),
@@ -125,7 +125,7 @@ create table Relacao_Prod_Vend(
 -- CRIANDO TABELA DA RELAÇÃO PRODUTO/FORNECEDOR --
 
 create table Relacao_Prod_Forn(
-	IdRelacaoForn int auto_increment,
+    IdRelacaoForn int auto_increment,
     IdProduto int,
     IdFornecedor int,
     constraint primary key (IdRelacaoForn, IdProduto, IdFornecedor),
@@ -136,7 +136,7 @@ create table Relacao_Prod_Forn(
 -- CRIANDO TABELA DA RELAÇÃO PRODUTO/ESTOQUE --
 
 create table Relacao_Prod_Est(
-	IdRelacaoEstoq int auto_increment,
+    IdRelacaoEstoq int auto_increment,
     IdProduto int,
     IdEstoque int,
     constraint primary key (IdRelacaoEstoq, IdProduto, IdEstoque),
@@ -147,7 +147,7 @@ create table Relacao_Prod_Est(
 -- CRIANDO TABELA DA RELAÇÃO PRODUTO/PEDIDO --
 
 create table Realacao_Prod_Pedid(
-	IdRelacaoPedid int auto_increment,
+    IdRelacaoPedid int auto_increment,
     IdProduto int,
     IdPedido int,
     constraint primary key (IdRelacaoPedid, IdProduto, IdPedido),
